@@ -1,50 +1,81 @@
 @import "tailwindcss/preflight";
-@tailwind utilities;
+@import "tailwindcss";
 
 @layer base {
-  .dark {
-    --background: #15171a;
-    --foreground: #f8fafc;
+  :root {
+    --background: 248 250 252;
+    --foreground: 15 23 42;
 
-    --card: #1a1c21;
-    --card-foreground: #f8fafc;
+    --card: 255 255 255;
+    --card-foreground: 15 23 42;
 
-    --popover: #1a1c21;
-    --popover-foreground: #f8fafc;
+    --popover: 255 255 255;
+    --popover-foreground: 15 23 42;
 
-    --primary: #7c6cff;
-    --primary-foreground: #ffffff;
+    --primary: 122 101 255;
+    --primary-foreground: 255 255 255;
 
-    --secondary: #25262b;
-    --secondary-foreground: #f8fafc;
+    --secondary: 241 245 249;
+    --secondary-foreground: 15 23 42;
 
-    --muted: #25262b;
-    --muted-foreground: #9ca3af;
+    --muted: 241 245 249;
+    --muted-foreground: 100 116 139;
 
-    --accent: #25262b;
-    --accent-foreground: #f8fafc;
+    --accent: 241 245 249;
+    --accent-foreground: 15 23 42;
 
-    --destructive: #ef4444;
-    --destructive-foreground: #f8fafc;
+    --destructive: 239 68 68;
+    --destructive-foreground: 248 250 252;
 
-    --border: #25262b;
-    --input: #25262b;
-    --ring: #d1d5db;
+    --border: 226 232 240;
+    --input: 226 232 240;
+    --ring: 99 102 241;
 
     --radius: 0.5rem;
   }
-}
 
-@layer base {
-  * {
-    @apply border-border antialiased;
+  .dark {
+    --background: 23 23 24;
+    --foreground: 248 250 252;
+
+    --card: 27 27 29;
+    --card-foreground: 248 250 252;
+
+    --popover: 27 27 29;
+    --popover-foreground: 248 250 252;
+
+    --primary: 122 101 255;
+    --primary-foreground: 255 255 255;
+
+    --secondary: 40 40 43;
+    --secondary-foreground: 248 250 252;
+
+    --muted: 40 40 43;
+    --muted-foreground: 163 174 190;
+
+    --accent: 40 40 43;
+    --accent-foreground: 248 250 252;
+
+    --destructive: 239 68 68;
+    --destructive-foreground: 248 250 252;
+
+    --border: 40 40 43;
+    --input: 40 40 43;
+    --ring: 214 221 229;
   }
 
-  html {
-    @apply h-full;
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html,
+  body {
+    height: 100%;
   }
 
   body {
-    @apply bg-background text-foreground h-full;
+    background-color: rgb(var(--background));
+    color: rgb(var(--foreground));
   }
 }
