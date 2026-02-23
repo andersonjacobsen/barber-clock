@@ -4,6 +4,7 @@ import { Badge } from "./ui/badge"
 import { Button } from "./ui/button"
 import { Card, CardContent } from "./ui/card"
 import Image from "next/image"
+import Link from "next/link"
 
 interface BarberclockItemProps {
   barberclock: Barberclock
@@ -35,8 +36,8 @@ const BarberclockItem = ({ barberclock }: BarberclockItemProps) => {
           <p className="text-grey-400 truncate text-sm">
             {barberclock.address}
           </p>
-          <Button variant="secondary" className="mt-3 w-full">
-            Reservar
+          <Button variant="secondary" className="mt-3 w-full" asChild>
+            <Link href={`/barberclocks/${barberclock.id}`}>Reservar</Link>
           </Button>
         </div>
       </CardContent>
