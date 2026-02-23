@@ -6,8 +6,11 @@ import Image from "next/image"
 import { Card, CardContent } from "./_components/ui/card"
 import { Badge } from "./_components/ui/badge"
 import { Avatar, AvatarImage } from "./_components/ui/avatar"
+import { db } from "./_lib/prisma"
+import BarberclockItem from "./_components/barberclock-item"
 
-const Home = () => {
+const Home = async () => {
+  const barberclocks = await db.barberclock.findMany({})
   return (
     <div>
       <Header />
@@ -31,7 +34,11 @@ const Home = () => {
           />
         </div>
 
-        <Card className="mt-6">
+        <h2 className="mt-6 mb-3 text-xs font-bold text-gray-400 uppercase">
+          Agendamentos
+        </h2>
+
+        <Card>
           <CardContent className="flex justify-between p-0">
             <div className="flex flex-col gap-2 py-5">
               <Badge className="w-fit">Confirmado</Badge>
@@ -41,7 +48,7 @@ const Home = () => {
                 <Avatar className="h-6 w-6">
                   <AvatarImage src="https://utfs.io/f/c97a2dc9-cf62-468b-a851-bfd2bdde775f-16p.png"></AvatarImage>
                 </Avatar>
-                <p className="text-sm">Barbarus</p>
+                <p className="text-sm">Barbearia Barbarus</p>
               </div>
             </div>
 
@@ -52,6 +59,16 @@ const Home = () => {
             </div>
           </CardContent>
         </Card>
+
+        <h2 className="mt-6 mb-3 text-xs font-bold text-gray-400 uppercase">
+          Recomendados
+        </h2>
+
+        <div className="flex gap-4 overflow-auto [&::-webkit-scrollbar]:hidden">
+          {barberclocks.map((barberclock) => (
+            <BarberclockItem key={barberclock.id} barberclock={barberclock} />
+          ))}
+        </div>
       </div>
     </div>
   )
