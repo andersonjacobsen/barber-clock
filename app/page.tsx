@@ -11,6 +11,12 @@ import BarberclockItem from "./_components/barberclock-item"
 
 const Home = async () => {
   const barberclocks = await db.barberclock.findMany({})
+  const popularBarberclocks = await db.barberclock.findMany({
+    orderBy: {
+      name: "desc",
+    },
+  })
+
   return (
     <div>
       <Header />
@@ -22,6 +28,53 @@ const Home = async () => {
           <Input placeholder="Faça sua busca..." />
           <Button>
             <SearchIcon />
+          </Button>
+        </div>
+
+        <div className="mt-6 flex gap-3 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
+          <Button className="gap-2" variant="secondary">
+            <Image src="/cabelo.svg" width={16} height={16} alt="Cabelo" />
+            Cabelo
+          </Button>
+
+          <Button className="gap-2" variant="secondary">
+            <Image src="/barba.svg" width={16} height={16} alt="Barba" />
+            Barba
+          </Button>
+
+          <Button className="gap-2" variant="secondary">
+            <Image
+              src="/acabamento.svg"
+              width={16}
+              height={16}
+              alt="Acabamento"
+            />
+            Acabamento
+          </Button>
+
+          <Button className="gap-2" variant="secondary">
+            <Image
+              src="/sobrancelha.svg"
+              width={16}
+              height={16}
+              alt="Sobrancelha"
+            />
+            Sobrancelha
+          </Button>
+
+          <Button className="gap-2" variant="secondary">
+            <Image src="/massagem.svg" width={16} height={16} alt="Massagem" />
+            Massagem
+          </Button>
+
+          <Button className="gap-2" variant="secondary">
+            <Image
+              src="/hidratação.svg"
+              width={16}
+              height={16}
+              alt="Hidratação"
+            />
+            Hidratação
           </Button>
         </div>
 
@@ -69,7 +122,27 @@ const Home = async () => {
             <BarberclockItem key={barberclock.id} barberclock={barberclock} />
           ))}
         </div>
+
+        <h2 className="mt-6 mb-3 text-xs font-bold text-gray-400 uppercase">
+          Populares
+        </h2>
+
+        <div className="flex gap-4 overflow-auto [&::-webkit-scrollbar]:hidden">
+          {popularBarberclocks.map((barberclock) => (
+            <BarberclockItem key={barberclock.id} barberclock={barberclock} />
+          ))}
+        </div>
       </div>
+
+      <footer>
+        <Card>
+          <CardContent className="px-6 py-5">
+            <p className="text-sm text-gray-400">
+              © 2026 Copyright <span className="font-bold">Barber Clock</span>
+            </p>
+          </CardContent>
+        </Card>
+      </footer>
     </div>
   )
 }
