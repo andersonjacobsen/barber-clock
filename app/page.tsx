@@ -3,7 +3,6 @@ import Header from "./_components/header"
 import { Input } from "./_components/ui/input"
 import { Button } from "./_components/ui/button"
 import Image from "next/image"
-import { Card, CardContent } from "./_components/ui/card"
 import { db } from "./_lib/prisma"
 import BarberclockItem from "./_components/barberclock-item"
 import { quickSearchOptions } from "./_constants/search"
@@ -76,16 +75,6 @@ const Home = async () => {
           ))}
         </div>
       </div>
-
-      <footer>
-        <Card>
-          <CardContent className="px-6 py-5">
-            <p className="text-sm text-gray-400">
-              © 2026 Copyright <span className="font-bold">Barber Clock</span>
-            </p>
-          </CardContent>
-        </Card>
-      </footer>
     </div>
   )
 }

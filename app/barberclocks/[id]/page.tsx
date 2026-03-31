@@ -1,3 +1,4 @@
+import PhoneItem from "@/app/_components/phone-item"
 import ServiceItem from "@/app/_components/service-item"
 import { Button } from "@/app/_components/ui/button"
 import { db } from "@/app/_lib/prisma"
@@ -7,15 +8,16 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 
 interface BarberclockPageProps {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
 const BarberclockPage = async ({ params }: BarberclockPageProps) => {
+  const { id } = await params
   const barberclock = await db.barberclock.findUnique({
     where: {
-      id: params.id,
+      id,
     },
     include: {
       services: true,
@@ -73,13 +75,19 @@ const BarberclockPage = async ({ params }: BarberclockPageProps) => {
         <p className="text-justify text-sm">{barberclock?.description}</p>
       </div>
 
-      <div className="space-y-3 p-5">
+      <div className="space-y-3 border-b border-solid p-5">
         <h2 className="text-xs font-bold text-gray-400 uppercase">Serviços</h2>
         <div className="space-y-3">
           {barberclock.services.map((service) => (
             <ServiceItem key={service.id} service={service} />
           ))}
         </div>
+      </div>
+
+      <div className="space-y-3 p-5">
+        {barberclock.phones.map((phone) => (
+          <PhoneItem key={phone} phone={phone} />
+        ))}
       </div>
     </div>
   )
