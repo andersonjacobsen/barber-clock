@@ -8,8 +8,8 @@ import SidebarSheet from "./sidebar-sheet"
 const Header = () => {
   return (
     <Card>
-      <CardContent className="flex flex-row items-center justify-between px-8 py-4">
-        <Image alt="Barber Clock" src="/Logo0.png" height={36} width={240} />
+      <CardContent className="flex flex-row items-center justify-between px-8 py-1">
+        <Image alt="Barber Clock" src="/Logo0.png" height={24} width={160} />
         <Sheet>
           <SheetTrigger asChild>
             <Button size={"icon"} variant={"outline"}>
