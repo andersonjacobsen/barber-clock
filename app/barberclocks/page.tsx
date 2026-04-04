@@ -13,10 +13,24 @@ const BarberclockPage = async ({ searchParams }: BarberclockPageProps) => {
   const { search } = await searchParams
   const barberclock = await db.barberclock.findMany({
     where: {
-      name: {
-        contains: search || "",
-        mode: "insensitive",
-      },
+      OR: [
+        {
+          name: {
+            contains: search || "",
+            mode: "insensitive",
+          },
+        },
+        {
+          services: {
+            some: {
+              name: {
+                contains: search || "",
+                mode: "insensitive",
+              },
+            },
+          },
+        },
+      ],
     },
   })
 
